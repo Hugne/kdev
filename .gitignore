@@ -1,4 +1,5 @@
 *.swp
+*~
 Makefile.in
 aclocal.m4
 ar-lib
@@ -19,4 +20,10 @@ m4/ltversion.m4
 m4/lt~obsolete.m4
 missing
 src/Makefile.in
+Makefile
+config.h
+config.log
+config.status
+libtool
+stamp-h1
 

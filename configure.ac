@@ -29,6 +29,15 @@ AC_PROG_LIBTOOL
 AC_PROG_LN_S
 AC_PROG_EGREP
 
+
+####
+#TODO: pass install prefix directory to iproute2
+AC_CONFIG_SUBDIRS([src/iproute2, src/busybox])
+
+
+####
+
+
 # Check some compiler flags
 AX_CFLAGS_GCC_OPTION([-fdiagnostics-show-option],[MORE_CFLAGS])
 AX_CFLAGS_GCC_OPTION([-pipe],[MORE_CFLAGS])
