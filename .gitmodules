@@ -4,3 +4,6 @@
 [submodule "busybox"]
 	path = src/busybox
 	url = ./busybox/
+[submodule "linux"]
+	path = src/linux
+	url = ./src/linux/
