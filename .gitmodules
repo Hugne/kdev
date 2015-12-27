@@ -1,9 +1,12 @@
 [submodule "iproute2"]
 	path = src/iproute2
 	url = ./iproute2/
+	ignore = dirty
 [submodule "busybox"]
 	path = src/busybox
 	url = ./busybox/
+	ignore = dirty
 [submodule "linux"]
 	path = src/linux
 	url = ./src/linux/
+	ignore = dirty

@@ -27,5 +27,4 @@ config.status
 libtool
 stamp-h1
 rootfs/*
-src/iproute2/*
-src/busybox/*
+ChangeLog
