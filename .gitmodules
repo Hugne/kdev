@@ -1,0 +1,6 @@
+[submodule "iproute2"]
+	path = iproute2
+	url = ./iproute2/
+[submodule "busybox"]
+	path = busybox
+	url = ./busybox/
