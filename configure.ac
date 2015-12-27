@@ -74,8 +74,15 @@ AC_CACHE_SAVE
 ## TODO:2003 Add the dependencies of your project here.
 ## TODO:2003 The use of "jansson" here is not mandatory. You don't have
 ## TODO:2003 to keep it.
-
+PKG_CHECK_MODULES([LIBMNL], [libmnl])
 PKG_CHECK_MODULES([LIBNCURSES], [ncurses])
+
+AC_CHECK_PROG(BISON, bison, bison)
+AS_IF([test -z "$BISON"], [AC_MSG_ERROR([bison missing!])])
+AC_CHECK_PROG(FLEX, flex, flex)
+AS_IF([test -z "$FLEX"], [AC_MSG_ERROR([flex missing!])])
+
+
 AC_CACHE_SAVE
 
 AC_SUBST([MORE_CFLAGS])
