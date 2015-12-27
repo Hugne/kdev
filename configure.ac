@@ -4,7 +4,7 @@ AC_PREREQ([2.64])
 AC_INIT([kdev],
         [m4_esyscmd_s([./get-version])],
         [erik.hugne@gmail.com])
-AC_CONFIG_SRCDIR([src/log.c])
+AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_FILES([Makefile src/Makefile])
 AC_CONFIG_MACRO_DIR([m4])
@@ -32,7 +32,7 @@ AC_PROG_EGREP
 
 ####
 #TODO: pass install prefix directory to iproute2
-AC_CONFIG_SUBDIRS([src/iproute2, src/busybox])
+AC_CONFIG_SUBDIRS([src/iproute2], [src/busybox])
 
 
 ####
