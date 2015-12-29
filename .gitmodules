@@ -10,3 +10,6 @@
 	path = src/linux
 	url = ./src/linux/
 	ignore = dirty
+[submodule "9pm"]
+	path = test/9pm
+	url = ./test/9pm/
