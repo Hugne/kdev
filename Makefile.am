@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS = -I m4
-#SUBDIRS        = src
+SUBDIRS        = src
 EXTRA_DIST     = get-version autogen.sh
 DISTCLEANFILES = ChangeLog
 dist_doc_DATA  = README.md

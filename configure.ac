@@ -31,9 +31,8 @@ AC_PROG_EGREP
 
 
 ####
-#TODO: pass install prefix directory to iproute2
+#3pp modules, not automake
 AC_CONFIG_SUBDIRS([src/iproute2], [src/busybox])
-
 
 ####
 
