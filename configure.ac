@@ -33,7 +33,7 @@ AC_PROG_EGREP
 
 ####
 #3pp modules, not automake
-AC_CONFIG_SUBDIRS([src/iproute2/iproute2], [src/busybox/busybox])
+AC_CONFIG_SUBDIRS([src/dropbear/dropbear], [src/iproute2/iproute2], [src/busybox/busybox])
 
 ####
 

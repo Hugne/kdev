@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#Find all executables under $1
+FILES=$(find $1 -executable -type f)
+LIBS=""
+#Check which libs are used by each executable
+for f in $FILES; do 
+LIBS+=$(/usr/bin/ldd $f |awk '{print $3" \n"}')
+done
+#Remove duplicate libs
+LLI=$( awk 'BEGIN{RS=ORS=" "}!a[$0]++' <<<$LIBS );
+for lib in $LLI; do
+	if [ -e $lib ]
+	then
+		echo $lib
+	fi
+done
+
