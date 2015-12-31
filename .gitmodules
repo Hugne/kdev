@@ -13,6 +13,8 @@
 [submodule "9pm"]
 	path = test/9pm
 	url = ./test/9pm/
+	ignore = dirty
 [submodule "dropbear"]
 	path = src/dropbear/dropbear
 	url = ./src/dropbear/dropbear
+	ignore = dirty

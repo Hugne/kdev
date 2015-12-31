@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#Find all executables under $1
+#Find all executables under $1 and copy required libs
+#from host to $1
 FILES=$(find $1 -executable -type f)
 LIBS=""
 #Check which libs are used by each executable
@@ -13,6 +14,7 @@ for lib in $LLI; do
 	if [ -e $lib ]
 	then
 		echo $lib
+		cp -f $lib $1/lib/
 	fi
 done
 
