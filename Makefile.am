@@ -4,8 +4,6 @@ EXTRA_DIST     = get-version autogen.sh
 DISTCLEANFILES = ChangeLog
 dist_doc_DATA  = README.md
 doc_DATA       = ChangeLog
-rootfsdir	= $(prefix)
-rootfs_DATA      = rootfs
 # Build changelog from git history
 .PHONY: ChangeLog
 ChangeLog:
@@ -27,11 +25,12 @@ ChangeLog:
 dist-hook:
 	echo $(VERSION) > $(distdir)/.dist-version
 
-.PHONY: rootfs
-rootfs:
-	$(AM_V_GEN) echo  "Generate rootfs structure at $(rootfsdir)"
-	mkdir -p $(rootfsdir)/var/lib $(rootfsdir)/var/log $(rootfsdir)/var/run
-	mkdir -p $(rootfsdir)/tmp $(rootfsdir)/root $(rootfsdir)/usr
-	mkdir -p $(rootfsdir)/var/lib $(rootfsdir)/bin $(rootfsdir)/sbin
-	mkdir -p $(rootfsdir)/lib $(rootfsdir)/sys $(rootfsdir)/proc
-	mkdir -p $(rootfsdir)/lib64
+
+install-exec-hook:
+	echo "This is the install exec hook"
+
+install-data-hook:
+	echo "This is the install data hook"
+	mkdir -p ./boot/
+	(cd $(prefix) && find . | cpio --owner 0:0 -H newc -o | \
+	gzip -c > $(prefix)/../boot/initramfs.cpio.gz)

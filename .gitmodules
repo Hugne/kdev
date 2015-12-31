@@ -1,15 +1,18 @@
 [submodule "iproute2"]
-	path = src/iproute2
-	url = ./iproute2/
+	path = src/iproute2/iproute2
+	url = ./src/iproute2/iproute2
 	ignore = dirty
 [submodule "busybox"]
-	path = src/busybox
-	url = ./busybox/
+	path = src/busybox/busybox
+	url = ./src/busybox/busybox/
 	ignore = dirty
 [submodule "linux"]
-	path = src/linux
-	url = ./src/linux/
+	path = src/linux/linux
+	url = ./src/linux/linux
 	ignore = dirty
 [submodule "9pm"]
 	path = test/9pm
 	url = ./test/9pm/
+[submodule "dropbear"]
+	path = src/dropbear/dropbear
+	url = ./src/dropbear/dropbear

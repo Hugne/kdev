@@ -1,2 +1,1 @@
-AM_MAKEFLAGS = DESTDIR=$(prefix)
-SUBDIRS = busybox iproute2 linux
+SUBDIRS = iproute2 busybox linux

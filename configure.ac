@@ -6,7 +6,7 @@ AC_INIT([kdev],
         [erik.hugne@gmail.com])
 AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADER([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile src/iproute2/Makefile src/busybox/Makefile src/linux/Makefile])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror tar-ustar])
 AM_MAINTAINER_MODE
@@ -33,7 +33,7 @@ AC_PROG_EGREP
 
 ####
 #3pp modules, not automake
-AC_CONFIG_SUBDIRS([src/iproute2], [src/busybox])
+AC_CONFIG_SUBDIRS([src/iproute2/iproute2], [src/busybox/busybox])
 
 ####
 
