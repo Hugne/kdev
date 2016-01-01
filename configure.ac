@@ -13,6 +13,7 @@ AM_MAINTAINER_MODE
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES(yes)])
 m4_pattern_allow([AM_PROG_AR])
 m4_include([m4/ax_prog_perl_modules.m4])
+m4_include([m4/ax_prog_tcl.m4])
 AM_PROG_AR
 
 # Configure libtool
@@ -79,12 +80,14 @@ PKG_CHECK_MODULES([LIBNCURSES], [ncurses])
 AC_CHECK_PROG([PERL], perl, perl)
 AS_IF([test -z "$PERL"], [AC_MSG_WARN([Perl missing!])])
 AX_PROG_PERL_MODULES([YAML::XS] [TAP::Harness::JUnit], , AC_MSG_WARN([Missing perl modules - 9PM may not work properly]))
-
 AC_CHECK_PROG(BISON, bison, bison)
 AS_IF([test -z "$BISON"], [AC_MSG_ERROR([bison missing!])])
 AC_CHECK_PROG(FLEX, flex, flex)
 AS_IF([test -z "$FLEX"], [AC_MSG_ERROR([flex missing!])])
-
+AC_CHECK_PROG(EXPECT, expect, expect)
+AS_IF([test -z "$EXPECT"], [AC_MSG_ERROR([expect missing!])])
+AX_PROG_TCL
+#How to check for tcl modules?
 
 AC_CACHE_SAVE
 
