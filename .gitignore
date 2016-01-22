@@ -10,7 +10,6 @@ config.h.in
 config.sub
 configure
 depcomp
-get-version
 install-sh
 ltmain.sh
 m4/libtool.m4
