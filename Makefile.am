@@ -33,4 +33,4 @@ install-data-hook:
 	echo "This is the install data hook"
 	mkdir -p ./boot/
 	(cd $(prefix) && find . | cpio --owner 0:0 -H newc -o | \
-	gzip -c > $(prefix)/../boot/initramfs.cpio.gz)
+	gzip > $(prefix)/../boot/initramfs.cpio.gz)
