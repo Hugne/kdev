@@ -27,10 +27,10 @@ dist-hook:
 
 
 install-exec-hook:
-	echo "This is the install exec hook"
-
+	echo "This is the toplevel install exec hook"
+	mkdir -p ../boot/
+	cp -r ./skel/pxeboot/* ../boot/
 install-data-hook:
 	echo "This is the install data hook"
-	mkdir -p ./boot/
 	(cd $(prefix) && find . | cpio --owner 0:0 -H newc -o | \
 	gzip > $(prefix)/../boot/initramfs.cpio.gz)
