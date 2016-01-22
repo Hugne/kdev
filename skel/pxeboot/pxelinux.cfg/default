@@ -1,0 +1,16 @@
+default test
+serial 0 115200
+
+label vmlinuz
+kernel vmlinuz
+append console=ttyS0,115200 initrd=initramfs.cpio.gz rw root=/dev/ram0 init=/sbin/init noapic
+
+label test
+kernel vmlinuz
+append console=ttyS0,115200 initrd=initramfs.cpio.gz root=/dev/ram rw rootfstype=tmpfs rdinit=/sbin/init
+
+
+label test2
+kernel vmlinuz
+append console=ttyS0,115200 initrd=initramfs.cpio.gz root=/dev/ram rw
+
