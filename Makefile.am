@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS        = src
+SUBDIRS        = skel src
 EXTRA_DIST     = get-version autogen.sh
 DISTCLEANFILES = ChangeLog
 dist_doc_DATA  = README.md
@@ -25,12 +25,7 @@ ChangeLog:
 dist-hook:
 	echo $(VERSION) > $(distdir)/.dist-version
 
-
-install-exec-hook:
-	echo "This is the toplevel install exec hook"
-	mkdir -p ../boot/
-	cp -r ./skel/pxeboot/* ../boot/
 install-data-hook:
-	echo "This is the install data hook"
+	echo "Build initramfs from $(prefix)"
 	(cd $(prefix) && find . | cpio --owner 0:0 -H newc -o | \
 	gzip > $(prefix)/../boot/initramfs.cpio.gz)
