@@ -14,4 +14,7 @@ do
     args+=" "
 done
 
-cd dropbear && ./configure $args
+cd dropbear
+autoconf
+autoheader
+./configure $args
