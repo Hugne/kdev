@@ -1,26 +1,36 @@
 PXEDIR		= ./pxeboot
 BOOTDIR		= $(prefix)/boot
+ETCDIR		= $(prefix)/rootfs/etc/
 KERNELSRC	= ../src/linux/linux
 BUSYBOXSRC	= ../src/busybox/busybox
 $(BOOTDIR):
 	mkdir -p $(BOOTDIR)
 $(BOOTDIR)/ldlinux.c32: $(BOOTDIR)
-	cp $(PXEDIR)/ldlinux.c32 $(BOOTDIR)/ldlinux.c32
+	cp -n $(PXEDIR)/ldlinux.c32 $(BOOTDIR)/ldlinux.c32
 $(BOOTDIR)/pxelinux.0: $(BOOTDIR) 
-	cp $(PXEDIR)/pxelinux.0 $(BOOTDIR)/pxelinux.0
+	cp -n $(PXEDIR)/pxelinux.0 $(BOOTDIR)/pxelinux.0
 $(BOOTDIR)/pxelinux.cfg: $(BOOTDIR)
-	mkdir $(BOOTDIR)/pxelinux.cfg
+	mkdir -p $(BOOTDIR)/pxelinux.cfg
 $(BOOTDIR)/pxelinux.cfg/default: $(BOOTDIR)/pxelinux.cfg
-	cp $(PXEDIR)/pxelinux.cfg/default $(BOOTDIR)/pxelinux.cfg/default
+	cp -n $(PXEDIR)/pxelinux.cfg/default $(BOOTDIR)/pxelinux.cfg/default
 $(KERNELSRC)/.config:
-	cp linux.config $(KERNELSRC)/.config
+	cp -n linux.config $(KERNELSRC)/.config
 $(BUSYBOXSRC)/.config:
-	cp busybox.config $(BUSYBOXSRC)/.config
+	cp -n busybox.config $(BUSYBOXSRC)/.config
 
+$(ETCDIR):
+	mkdir -p $(ETCDIR)
+	cp -r -n ./etc/* $(ETCDIR)
 .PHONY: srcconf
 srcconf: $(KERNELSRC)/.config $(BUSYBOXSRC)/.config
+
+.PHONY:etc
+etc: $(ETCDIR) 
+
 .PHONY: pxeboot
 pxeboot: $(BOOTDIR)/ldlinux.c32 $(BOOTDIR)/pxelinux.0 $(BOOTDIR)/pxelinux.cfg/default
 
-#TODO: This should be done at 'install', and not during build..
-all: pxeboot srcconf
+#TODO: pxeboot should be done at 'install', and not during build..
+#all: pxeboot srcconf etc
+
+install-exec-hook: pxeboot etc
