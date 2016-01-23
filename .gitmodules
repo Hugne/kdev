@@ -1,20 +1,20 @@
 [submodule "iproute2"]
 	path = src/iproute2/iproute2
-	url = ./src/iproute2/iproute2
+	url = git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
 	ignore = dirty
 [submodule "busybox"]
 	path = src/busybox/busybox
-	url = ./src/busybox/busybox/
+	url = git://busybox.net/busybox.git 
 	ignore = dirty
 [submodule "linux"]
 	path = src/linux/linux
-	url = ./src/linux/linux
+	url = git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 	ignore = dirty
 [submodule "9pm"]
 	path = test/9pm
-	url = ./test/9pm/
+	url = https://github.com/rical/9pm.git
 	ignore = dirty
 [submodule "dropbear"]
 	path = src/dropbear/dropbear
-	url = ./src/dropbear/dropbear
+	url = https://github.com/mkj/dropbear.git
 	ignore = dirty
