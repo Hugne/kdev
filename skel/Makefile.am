@@ -22,5 +22,5 @@ srcconf: $(KERNELSRC)/.config $(BUSYBOXSRC)/.config
 .PHONY: pxeboot
 pxeboot: $(BOOTDIR)/ldlinux.c32 $(BOOTDIR)/pxelinux.0 $(BOOTDIR)/pxelinux.cfg/default
 
-
+#TODO: This should be done at 'install', and not during build..
 all: pxeboot srcconf
