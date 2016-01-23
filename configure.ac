@@ -35,7 +35,7 @@ AC_PROG_EGREP
 AC_PREFIX_DEFAULT(/tmp)
 ####
 #3pp modules, not automake
-AC_CONFIG_SUBDIRS([src/dropbear/], [src/iproute2/iproute2], [src/busybox/busybox])
+AC_CONFIG_SUBDIRS([src/linux src/dropbear src/busybox src/iproute2/iproute2])
 
 ####
 
@@ -72,9 +72,6 @@ esac
 
 AC_CACHE_SAVE
 
-## TODO:2003 Add the dependencies of your project here.
-## TODO:2003 The use of "jansson" here is not mandatory. You don't have
-## TODO:2003 to keep it.
 PKG_CHECK_MODULES([LIBMNL], [libmnl])
 PKG_CHECK_MODULES([LIBNCURSES], [ncurses])
 AC_CHECK_PROG([PERL], perl, perl)

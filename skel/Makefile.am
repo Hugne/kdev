@@ -1,8 +1,6 @@
 PXEDIR		= ./pxeboot
 BOOTDIR		= $(prefix)/boot
 ETCDIR		= $(prefix)/rootfs/etc/
-KERNELSRC	= ../src/linux/linux
-BUSYBOXSRC	= ../src/busybox/busybox
 $(BOOTDIR):
 	mkdir -p $(BOOTDIR)
 $(BOOTDIR)/ldlinux.c32: $(BOOTDIR)
@@ -21,16 +19,11 @@ $(BUSYBOXSRC)/.config:
 $(ETCDIR):
 	mkdir -p $(ETCDIR)
 	cp -r -n ./etc/* $(ETCDIR)
-.PHONY: srcconf
-srcconf: $(KERNELSRC)/.config $(BUSYBOXSRC)/.config
 
 .PHONY:etc
 etc: $(ETCDIR) 
 
 .PHONY: pxeboot
 pxeboot: $(BOOTDIR)/ldlinux.c32 $(BOOTDIR)/pxelinux.0 $(BOOTDIR)/pxelinux.cfg/default
-
-#TODO: pxeboot should be done at 'install', and not during build..
-#all: pxeboot srcconf etc
 
 install-exec-hook: pxeboot etc

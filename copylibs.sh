@@ -19,5 +19,5 @@ for lib in $LLI; do
 	fi
 done
 
-ln -r -s $1/lib $1/lib64
+ln -r -s -f $1/lib $1/lib64
 
