@@ -1,5 +1,5 @@
 PXEDIR		= ./pxeboot
-BOOTDIR		= ../boot
+BOOTDIR		= $(prefix)/boot
 KERNELSRC	= ../src/linux/linux
 BUSYBOXSRC	= ../src/busybox/busybox
 $(BOOTDIR):
