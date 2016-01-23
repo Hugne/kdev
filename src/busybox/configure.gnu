@@ -2,7 +2,6 @@
 #Don't fiddle with users .config if there is one already
 if [ -f ./busybox/.config ]; then
 	echo "Using existing busybox config"
-	exit 0
 else
 	make -C ./busybox defconfig
 fi
