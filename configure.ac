@@ -77,7 +77,7 @@ PKG_CHECK_MODULES([LIBMNL], [libmnl])
 PKG_CHECK_MODULES([LIBNCURSES], [ncurses])
 AC_CHECK_PROG([PERL], perl, perl)
 AS_IF([test -z "$PERL"], [AC_MSG_WARN([Perl missing!])])
-AX_PROG_PERL_MODULES([YAML::XS] [TAP::Harness::JUnit], , AC_MSG_WARN([Missing perl modules - 9PM will not work]))
+AX_PROG_PERL_MODULES([YAML::XS] [TAP::Harness::JUnit], , AC_MSG_WARN([perl modules required by 9pm missing!]))
 AC_CHECK_PROG(BISON, bison, bison)
 AS_IF([test -z "$BISON"], [AC_MSG_ERROR([bison missing!])])
 AC_CHECK_PROG(FLEX, flex, flex)
@@ -85,7 +85,7 @@ AS_IF([test -z "$FLEX"], [AC_MSG_ERROR([flex missing!])])
 AC_CHECK_PROG(EXPECT, expect, expect)
 AS_IF([test -z "$EXPECT"], [AC_MSG_ERROR([expect missing!])])
 AX_PROG_TCL
-AX_PROG_TCL_MODULES([yaml Expect], AC_MSG_WARN([Missing TCL modules - 9PM will not work]), )
+AX_PROG_TCL_MODULES([yaml Expect], AC_MSG_ERROR([TCL modules required by 9pm missing!]), )
 AC_CACHE_SAVE
 
 AC_SUBST([MORE_CFLAGS])
