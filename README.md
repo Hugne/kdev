@@ -24,7 +24,7 @@ This can be changed using the normal autotools --prefix, e.g:
 ```
 
 TFTPBOOT
---------------
+--------
 You'll need to configure a tftp server and point tftproot
 to the 'boot' directory under your prefix.
 ```shell
@@ -51,6 +51,23 @@ And start/restart xinetd
     $ sudo service xinetd start
 ```
 
+BOOTING
+-------
+9pm is used to configure virsh network and start domains, check out Richard's repo
+https://github.com/rical/9pm
+
+Two simple scripts are provided, to start the virsh network, and to start a VM.
+Starting the VM requires that you pass a configuration file, which tells 9pm what
+template virsh XML it should use to define the domain, the IP, hostname etc.
+
+```shell
+    $ ./net.tcl
+    $ ./node.tcl -c virsh.yaml
+```
+Attach to the domain with
+```
+    $ virsh console node1
+```
 TODO
 --------
 Add 9pm VM start scripts and examples

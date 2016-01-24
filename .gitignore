@@ -27,4 +27,5 @@ libtool
 stamp-h1
 rootfs/*
 boot/*
+test/log
 ChangeLog
