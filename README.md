@@ -55,7 +55,10 @@ BOOTING
 -------
 9pm is used to configure virsh network and start domains, check out Richard's repo
 https://github.com/rical/9pm
-
+In order to run 9pm scripts, you need to define the TCLLIBPATH environment variable.
+```
+    export TCLLIBPATH=/home/dude/kdev/test/9pm
+```
 Two simple scripts are provided, to start the virsh network, and to start a VM.
 Starting the VM requires that you pass a configuration file, which tells 9pm what
 template virsh XML it should use to define the domain, the IP, hostname etc.
