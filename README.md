@@ -10,29 +10,30 @@ build system/test VM as easy as possible.
 
 Installation
 ------------
-
+```shell
     $ ./autogen.sh
     $ ./configure
     $ make
     $ sudo make install
-
+```
 The default install prefix is /tmp, which means that
 the rootfs and pxe boot directory will be placed there.
 This can be changed using the normal autotools --prefix, e.g:
-
+```shell
     $./configure --prefix=/home/dude/kdev/sys 
-
+```
 
 TFTPBOOT
 --------------
 You'll need to configure a tftp server and point tftproot
 to the 'boot' directory under your prefix.
-
+```shell
     $ sudo apt install tftpd
-
+```
 To run tftpd as an xinetd service, add the file /etc/xinetd.d/tftp 
 with the following contents (change the server\_args path
-```    service tftp
+```shell
+    service tftp
     {
  	    protocol        = udp
 	    port            = 69
@@ -42,14 +43,15 @@ with the following contents (change the server\_args path
 	    server          = /usr/sbin/in.tftpd
 	    server_args     = /home/dude/kdev/sys
 	    disable         = no
-    }```
+    }
+```
 
 And start/restart xinetd
+```shell
     $ sudo service xinetd start
-
+```
 
 TODO
 --------
 Add 9pm VM start scripts and examples
 
-Some stuff (doc/man) is installed in the wrong places..

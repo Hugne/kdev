@@ -17,9 +17,9 @@ ChangeLog:
 			git log --pretty=' - [%h] %s (%an)' $$tag..$$prev ; \
 			echo "" ; \
 			prev=$$tag ; \
-		done > $@ ; \
+		done > $(prefix)/$@ ; \
 	else \
-		touch $@ ; \
+		touch $(prefix)/$@ ; \
 	fi
 
 dist-hook:
