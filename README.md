@@ -32,7 +32,7 @@ to the 'boot' directory under your prefix.
 
 To run tftpd as an xinetd service, add the file /etc/xinetd.d/tftp 
 with the following contents (change the server\_args path
-    service tftp
+```    service tftp
     {
  	    protocol        = udp
 	    port            = 69
@@ -42,7 +42,7 @@ with the following contents (change the server\_args path
 	    server          = /usr/sbin/in.tftpd
 	    server_args     = /home/dude/kdev/sys
 	    disable         = no
-    }
+    }```
 
 And start/restart xinetd
     $ sudo service xinetd start
