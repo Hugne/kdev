@@ -42,7 +42,7 @@ m4_foreach([ax_tcl_module], m4_split(m4_normalize([$1])),
 		     [']m4_bpatsubst(ax_tcl_module,=,[ ])[' ])
           ])
 
-# Make sure we have perl
+# Make sure we have tcl
 if test -z "$TCLSH"; then
 AC_MSG_WARN(TCLSH is not set)
 fi
@@ -63,7 +63,7 @@ if test "x$TCLSH" != x; then
   done
 
   # Run optional shell commands
-  if test "$ax_perl_modules_failed" = 0; then
+  if test "$ax_tcl_modules_failed" = 0; then
     :
     $2
   else
