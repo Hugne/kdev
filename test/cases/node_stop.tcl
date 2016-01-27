@@ -5,7 +5,6 @@ package require 9pm
 9pm::shell::open "virsh"
 
 proc kill_domain {domain} {
-    9pm::output::ok "Kill it"
     9pm::cmd::start "virsh dominfo node1"
     expect {
         -re {State:\s*running} {
@@ -25,25 +24,8 @@ proc kill_domain {domain} {
     9pm::output::warning "Domain $domain could not be killed, virsh returned $code"
 }
 
-proc start_domain {domain xml} {
-    9pm::output::ok "define node"
-    9pm::cmd::execute "virsh define $xml"
-    if {${?} != 0} {
-        9pm::fatal 9pm::output::error "Failed to define domain $domain from $xml"
-    }
-    9pm::output::ok "Domain $domain defined from $xml"
-    9pm::cmd::execute "virsh start $domain"
-    if {${?} != 0} {
-        9pm::fatal 9pm::output::error "Failed to start domain $domain"
-        kill_domain node1
-    }
-    9pm::output::ok "Domain $domain started"
-}
-
 set domain [9pm::conf::get machine HOSTNAME]
 set xml [9pm::conf::get machine DOMAINXML]
+
+9pm::output::plan 2
 kill_domain $domain
-#TODO: edit xml <name>$domain</name> to allow mutliple nodes 
-start_domain $domain $xml
-
-
