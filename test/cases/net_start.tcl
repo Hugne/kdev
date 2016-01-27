@@ -5,7 +5,7 @@ package require 9pm
 9pm::shell::open "virsh"
 
 proc start_net {} {
-    9pm::cmd::execute "virsh net-define default.xml"
+    9pm::cmd::execute "virsh net-define virsh/default.xml"
     if {${?} != 0} {
         9pm::fatal 9pm::output::error "Network could not be defined" 
     }
