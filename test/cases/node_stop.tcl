@@ -9,23 +9,48 @@ proc kill_domain {domain} {
     expect {
         -re {State:\s*running} {
             9pm::cmd::finish
-            9pm::cmd::execute "virsh destroy $domain"
-            9pm::output::ok "Domain $domain have been destroyed"
-            return [kill_domain $domain]
+            9pm::output::plan 2
+            destroy_domain $domain
+            undefine_domain $domain
+            return
         }
         -re {State:\s*shut off} {
             9pm::cmd::finish
-            9pm::cmd::execute "virsh undefine $domain"
-            9pm::output::ok "Domain $domain have been undefined"
+            9pm::output::plan 1
+            9pm::output::info "Domain $domain is not running"
+            undefine_domain $domain
+            return
+        }
+        -re {no domain with matching name} {
+            9pm::cmd::finish
+            9pm::output::plan 0
+            9pm::output::info "Domain $domain is not defined"
             return
         }
     }
     set code [9pm::cmd::finish]
-    9pm::output::warning "Domain $domain could not be killed, virsh returned $code"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "virsh dominfo returned $code"
+    }
+}
+
+proc destroy_domain {domain} {
+    9pm::cmd::execute "virsh destroy $domain"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "Domain could not be destroyed"
+    }
+    9pm::output::ok "Domain $domain have been destroyed"
+}
+
+proc undefine_domain {domain} {
+    9pm::cmd::execute "virsh undefine $domain"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "Domain could not be undefined"
+    }
+    9pm::output::ok "Domain $domain have been undefined"
 }
 
 set domain [9pm::conf::get machine HOSTNAME]
 set xml [9pm::conf::get machine DOMAINXML]
 
-9pm::output::plan 2
 kill_domain $domain
