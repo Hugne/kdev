@@ -41,7 +41,7 @@ with the following contents (change the server\_args path
 	    wait            = yes
 	    user            = nobody
 	    server          = /usr/sbin/in.tftpd
-	    server_args     = /home/dude/kdev/sys
+	    server_args     = /home/dude/kdev/sys/boot
 	    disable         = no
     }
 ```
@@ -50,22 +50,57 @@ And start/restart xinetd
 ```shell
     $ sudo service xinetd start
 ```
+It's also possible to run tftpd as a systemd service.
 
 BOOTING
 -------
 9pm is used to configure virsh network and start domains, check out Richard's repo
 https://github.com/rical/9pm
-In order to run 9pm scripts, you need to define the TCLLIBPATH environment variable.
+There are two ways to run the 9pm scripts ether invoke the .tcl scripts directly, for this you need to define the TCLLIBPATH environment variable:
 ```
-    export TCLLIBPATH=/home/dude/kdev/test/9pm
-```
-Two simple scripts are provided, to start the virsh network, and to start a VM.
-Starting the VM requires that you pass a configuration file, which tells 9pm what
-template virsh XML it should use to define the domain, the IP, hostname etc.
+    $ export TCLLIBPATH=/home/dude/kdev/test/9pm
+    $ test/cases/net_start.tcl
+      2016 02 04 - 21:03:39 - 1..2
+      2016 02 04 - 21:03:39 - # INFO - Network default is not defined
+      2016 02 04 - 21:03:39 - ok 1 - Network defined from virsh/default.xml
+      2016 02 04 - 21:03:39 - ok 2 - Network default started
 
+```
+Or you can invoke them through the 9pm harness.
 ```shell
-    $ ./net.tcl
-    $ ./node.tcl -c virsh.yaml
+    $ 9pm/9pm.pl cases/net_start.tcl
+      net_start.tcl ..
+      1..2
+      # INFO - Network default is not defined
+      ok 1 - Network defined from virsh/default.xml
+      ok 2 - Network default started
+      ok
+      All tests successful.
+      Files=1, Tests=2, 0.946269 wallclock secs ( 0.02 usr  0.00 sys +  0.05 cusr  0.01 csys =  0.08 CPU)
+      Result: PASS
+```
+
+
+A couple of simple scripts are provided, to start/stop the virsh network, and VM.
+Starting the VM requires that you pass a configuration file, which tells 9pm what template virsh XML it should use to define the domain, the IP, hostname etc.
+
+Two minimal suites are also provided to bring up/tear down the network and VM, this is run using the harness:
+```shell
+    $ 9pm/9pm.pl -v start.yaml -c node1.yaml 
+      start/net_start.tcl ...
+      1..2
+      # INFO - Network default is not defined
+      ok 1 - Network defined from virsh/default.xml
+      ok 2 - Network default started
+      ok
+      start/node_start.tcl ..
+      1..2
+      ok 1 - Domain defined from virsh/node.xml
+      ok 2 - Domain node1 started
+      ok
+      All tests successful.
+      Files=2, Tests=4, 2.26454 wallclock secs ( 0.03 usr  0.01 sys +  0.07 cusr  0.04 csys =  0.15 CPU)
+      Result: PASS
 ```
 Attach to the domain with
 ```
@@ -73,5 +108,4 @@ Attach to the domain with
 ```
 TODO
 --------
-Add 9pm VM start scripts and examples
 
