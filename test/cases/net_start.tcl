@@ -9,28 +9,25 @@ proc launch_net {} {
     expect {
         -re {Active:\s*yes} {
             9pm::cmd::finish
-            9pm::output::plan 0
-            9pm::output::info "Network default is already active"
+            9pm::output::skip "Network default is already defined"
+            9pm::output::skip "Network default is already active"
             return
         }
         -re {Active:\s*no} {
             9pm::cmd::finish
-            9pm::output::plan 1
-            9pm::output::info "Network default is not started"
+            9pm::output::skip "Network default is already defined"
             start_net "default"
             return
         }
         -re {no network with matching name} {
             9pm::cmd::finish
-            9pm::output::plan 2
-            9pm::output::info "Network default is not defined"
             define_net "virsh/default.xml"
             start_net "default"
             return
         }
     }
     set code [9pm::cmd::finish]
-    if {${?} != 0} {
+    if {$code != 0} {
         9pm::fatal 9pm::output::error "virsh net-info returned $code"
     }
 }
@@ -51,4 +48,5 @@ proc start_net {name} {
     9pm::output::ok "Network default started"
 }
 
+9pm::output::plan 2
 launch_net

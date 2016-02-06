@@ -9,26 +9,26 @@ proc kill_net {} {
     expect {
         -re {Active:\s*yes} {
         9pm::cmd::finish
-        9pm::output::plan 2
         destroy_net
         undefine_net
         return
         }
         -re {Active:\s*no} {
         9pm::cmd::finish
-        9pm::output::plan 1
-        9pm::output::info "Network default is not active"
+        9pm::output::skip "Network default is not active"
         undefine_net
         return
         }
         -re {no network with matching name} {
-        9pm::cmd::finish
-        9pm::output::plan 0
-        9pm::output::info "Network default is not defined"
+        9pm::output::skip "Network default is not active"
+        9pm::output::skip "Network default is not defined"
+        return
         }
     }
     set code [9pm::cmd::finish]
-    9pm::output::warning "Network default could not be killed, virsh returned $code"
+    if {$code != 0} {
+        9pm::fatal 9pm::output::error "Network default could not be killed, virsh returned $code"
+    }
 }
 
 proc destroy_net {} {
@@ -47,4 +47,5 @@ proc undefine_net {} {
     9pm::output::ok "Network default have been undefined"
 
 }
+9pm::output::plan 2
 kill_net
