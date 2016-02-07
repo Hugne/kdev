@@ -11,11 +11,6 @@ $(BOOTDIR)/pxelinux.cfg: $(BOOTDIR)
 	mkdir -p $(BOOTDIR)/pxelinux.cfg
 $(BOOTDIR)/pxelinux.cfg/default: $(BOOTDIR)/pxelinux.cfg
 	cp -n $(PXEDIR)/pxelinux.cfg/default $(BOOTDIR)/pxelinux.cfg/default
-$(KERNELSRC)/.config:
-	cp -n linux.config $(KERNELSRC)/.config
-$(BUSYBOXSRC)/.config:
-	cp -n busybox.config $(BUSYBOXSRC)/.config
-
 $(ETCDIR):
 	mkdir -p $(ETCDIR)
 	cp -r -n ./etc/* $(ETCDIR)
