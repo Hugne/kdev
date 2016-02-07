@@ -4,6 +4,33 @@ package require 9pm
 
 9pm::shell::open "virsh"
 
+proc template {} {
+    set path [file join [pwd] [info script]]
+    return "[file dirname $path]/../virsh/node.xml"
+}
+
+proc createxml {} {
+    set xml [template]
+    set hostname [9pm::conf::get machine HOSTNAME]
+    set mac [9pm::conf::get machine MAC]
+    set rnd [9pm::misc::get::rand_str 8]
+    set nodexml "/tmp/[file tail $xml].$rnd"
+    9pm::cmd::execute "cp $xml $nodexml"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "Node xml preparation failed"
+    }
+    9pm::cmd::execute "sed -i 's/<name><\\/name>/<name>$hostname<\\/name>/g' $nodexml"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "Failed to configure domain name"
+    }
+    9pm::cmd::execute "sed -i 's/<mac address=.*/<mac address=\"$mac\" \\/>/g' $nodexml"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "Failed to configure domain MAC address"
+    }
+    return $nodexml
+}
+
+
 proc launch_domain {} {
     set hostname [9pm::conf::get machine HOSTNAME]
     9pm::cmd::start "virsh dominfo $hostname"
@@ -35,12 +62,15 @@ proc launch_domain {} {
 }
 
 proc define_domain {} {
-    set xml [9pm::conf::get machine DOMAINXML]
+    set xml [createxml]
+    
     9pm::cmd::execute "virsh define $xml"
     if {${?} != 0} {
         9pm::fatal 9pm::output::error "Domain could not be defined"
+        9pm::output::info "Check $xml for errors"
     }
     9pm::output::ok "Domain defined from $xml"
+    9pm::cmd::execute "rm -f $xml"
 }
 
 proc start_domain {hostname} {
@@ -59,7 +89,6 @@ proc check_domain_up {retries} {
         9pm::output::ok "Echo reply from $hostname"
         return 
     }
-    puts "retries is $retries" 
     if {$retries > 0} {
         9pm::output::info "No echo reply from $hostname, still trying" 
         return [check_domain_up [expr $retries - 1]]

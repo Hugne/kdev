@@ -86,7 +86,7 @@ Starting the VM requires that you pass a configuration file, which tells 9pm wha
 
 Two minimal suites are also provided to bring up/tear down the network and VM, this is run using the harness:
 ```shell
-    $ 9pm/9pm.pl -v start.yaml -c node1.yaml 
+    $ 9pm/9pm.pl -v start.yaml -c conf/node1.yaml 
       start/net_start.tcl ...
       1..2
       # INFO - Network default is not defined
@@ -94,12 +94,15 @@ Two minimal suites are also provided to bring up/tear down the network and VM, t
       ok 2 - Network default started
       ok
       start/node_start.tcl ..
-      1..2
-      ok 1 - Domain defined from virsh/node.xml
+      1..3
+      ok 1 - Domain defined from /tmp/node.xml.gcmfdtbx
       ok 2 - Domain node1 started
+      # INFO - No echo reply from node1, still trying
+      # INFO - No echo reply from node1, still trying
+      ok 3 - Echo reply from node1
       ok
       All tests successful.
-      Files=2, Tests=4, 2.26454 wallclock secs ( 0.03 usr  0.01 sys +  0.07 cusr  0.04 csys =  0.15 CPU)
+      Files=2, Tests=5, 8.26454 wallclock secs ( 0.03 usr  0.01 sys +  0.07 cusr  0.04 csys =  0.15 CPU)
       Result: PASS
 ```
 Attach to the domain with
