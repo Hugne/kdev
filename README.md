@@ -111,4 +111,4 @@ Attach to the domain with
 ```
 TODO
 --------
-
+Hostname assignment using DHCP
