@@ -12,7 +12,7 @@ proc launch_domain {} {
         9pm::cmd::finish
         9pm::output::info "Domain $hostname is already defined"
         9pm::output::skip "Domain $hostname is already running"
-        9pm::output::warn "Node have NOT been restarted"
+        9pm::output::warning "Node have NOT been restarted"
         return
     }
     -re {State:\s*shut off} {
@@ -71,4 +71,4 @@ proc check_domain_up {retries} {
 
 9pm::output::plan 3
 launch_domain
-check_domain_up 5
+check_domain_up 10

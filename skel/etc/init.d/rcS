@@ -4,7 +4,7 @@
 # System
 #===============================================================================
 
-mkdir /proc /sys /tmp
+mkdir -p /proc /sys /tmp /var/run
 # Mount fstab
 mount -a
 
@@ -17,4 +17,9 @@ mknod /dev/tty c 5 0
 mdev -s
 
 # Set hostname
-hostname "bakka"
+hostname "kdev"
+
+# modprobe
+/etc/init.d/kmod
+# networking
+/etc/init.d/network

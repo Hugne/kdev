@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Silently exit if the kernel does not support modules.
+[ -f /proc/modules ] || exit 0
+[ -x /sbin/modprobe  ] || exit 0
+
+
+
+load_module() {
+  local module args
+  module="$1"
+  args="$2"
+
+  if [ "$VERBOSE" != no ]; then
+    echo "Loading kernel module $module"
+    modprobe $module $args || true
+  else
+    modprobe $module $args > /dev/null 2>&1 || true
+  fi
+}
+
+modlist=/etc/modules
+if [ "$modlist" ] ; then
+  grep -h '^[^#]' $modlist |
+  while read module args; do
+    [ "$module" ] || continue
+    load_module "$module" "$args"
+  done
+fi
+
+
