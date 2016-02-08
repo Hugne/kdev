@@ -4,7 +4,7 @@
 # System
 #===============================================================================
 
-mkdir -p /proc /sys /tmp /var/run /var/log
+mkdir -p /proc /sys /tmp /var/run /var/log /dev/pts
 # Mount fstab
 mount -a
 

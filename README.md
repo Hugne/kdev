@@ -121,6 +121,5 @@ TODO
 - dropbear dependencies to libnss..
 - dropbear include scp in build with AM\_MAKEFLAGS="PROGRAMS=dropbear .. .. scp"
 - src/Makefile.am should invoke src/dropbear/Makefile.am
-- devpts should be mounted using skel fstab
 
 
