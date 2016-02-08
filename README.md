@@ -112,7 +112,6 @@ Attach to the domain with
 TODO
 --------
 - Hostname assignment using DHCP
-- ld.linux.. is not copied to /lib in rootfs on some machines
 - kernel should be installed in /boot in rootfs, tftp boot directory should have a vmlinuz symlink instead
 - create rootfs/boot at appropriate time
 - node define testcase should be skipped if the vm is in state running
@@ -121,5 +120,5 @@ TODO
 - dropbear dependencies to libnss..
 - dropbear include scp in build with AM\_MAKEFLAGS="PROGRAMS=dropbear .. .. scp"
 - src/Makefile.am should invoke src/dropbear/Makefile.am
-
+- install target script that copies binarys from host machine to rootfs, run before copylibs.sh
 

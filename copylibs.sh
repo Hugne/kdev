@@ -11,13 +11,13 @@ done
 #Remove duplicate libs
 LLI=$( awk 'BEGIN{RS=ORS=" "}!a[$0]++' <<<$LIBS );
 #Copy to $1/lib
+LLI="${LLI[@]} `find /lib -name ld-linux-*`"
 for lib in $LLI; do
 	if [ -e $lib ]
 	then
-		echo $lib
+		echo "Add $lib to rootfs/lib/"
 		cp -f $lib $1/lib/
 	fi
 done
-
 ln -r -s -f $1/lib $1/lib64
 
