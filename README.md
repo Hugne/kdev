@@ -111,4 +111,16 @@ Attach to the domain with
 ```
 TODO
 --------
-Hostname assignment using DHCP
+- Hostname assignment using DHCP
+- ld.linux.. is not copied to /lib in rootfs on some machines
+- kernel should be installed in /boot in rootfs, tftp boot directory should have a vmlinuz symlink instead
+- create rootfs/boot at appropriate time
+- node define testcase should be skipped if the vm is in state running
+- check\_node\_up should use 9pm::cmd::execute "ssh... -o ConnectionAttempts=x -o ConnectTimeout=y" instead of ping
+- dropbear config at startup
+- dropbear dependencies to libnss..
+- dropbear include scp in build with AM\_MAKEFLAGS="PROGRAMS=dropbear .. .. scp"
+- src/Makefile.am should invoke src/dropbear/Makefile.am
+- devpts should be mounted using skel fstab
+
+
