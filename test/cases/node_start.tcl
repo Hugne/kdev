@@ -81,23 +81,20 @@ proc start_domain {hostname} {
     9pm::output::ok "Domain $hostname started"
 }
 
-proc check_domain_up {retries} {
+proc check_domain_up {} {
     set ip [9pm::conf::get machine SSH_IP]
     set hostname [9pm::conf::get machine HOSTNAME]
-    9pm::cmd::execute "ping $ip -c 1 -W 3"
+    9pm::cmd::execute "ssh $ip -o BatchMode=yes -o ConnectionAttempts=20 -o ConnectTimeout=3"
     if {${?} == 0} {
-        9pm::output::ok "Echo reply from $hostname"
+        9pm::output::ok "SSH connect success to $hostname ($ip)"
         return 
     }
-    if {$retries > 0} {
-        9pm::output::info "No echo reply from $hostname, still trying" 
-        return [check_domain_up [expr $retries - 1]]
-    }
-    9pm::output::error "No echo reply received from $hostname"
+    9pm::output::error "SSH connection to $hostname ($ip) failed"
 }
 
 #TODO: edit xml <name>$domain</name> to allow mutliple nodes 
 
 9pm::output::plan 3
 launch_domain
-check_domain_up 10
+set timeout 120
+check_domain_up
