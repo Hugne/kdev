@@ -1,4 +1,4 @@
-SUBDIRS = iproute2 busybox linux dropbear/dropbear
+SUBDIRS = iproute2 busybox linux dropbear
 
 
 install-data-hook:
