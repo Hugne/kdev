@@ -15,7 +15,7 @@ LLI=$( awk 'BEGIN{RS=ORS=" "}!a[$0]++' <<<$LIBS );
 LLI="${LLI[@]} `find /lib -name ld-linux-*`"
 
 #Add extra deps for dropbear
-LLI="${LLI[@]} `find /lib -name libnss_files.so*`"
+LLI="${LLI[@]} `find /lib -name libnss_compat.so* -o -name libnss_nis.so* -o -name libnss_files.so* -o -name libnsl.so*`"
 
 #Copy to $1/lib
 for lib in $LLI; do

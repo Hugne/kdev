@@ -83,8 +83,11 @@ proc start_domain {hostname} {
 
 proc check_domain_up {} {
     set ip [9pm::conf::get machine SSH_IP]
+    set user [9pm::conf::get machine SSH_USER]
     set hostname [9pm::conf::get machine HOSTNAME]
-    9pm::cmd::execute "ssh $ip -o BatchMode=yes -o ConnectionAttempts=20 -o ConnectTimeout=3"
+    9pm::cmd::execute "ssh $ip -l $user -o StrictHostKeyChecking=no \
+                       -o BatchMode=yes -o ConnectionAttempts=20 \
+                       -o ConnectTimeout=3 hostname"
     if {${?} == 0} {
         9pm::output::ok "SSH connect success to $hostname ($ip)"
         return 
