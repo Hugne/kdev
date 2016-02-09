@@ -10,8 +10,14 @@ LIBS+=$(/usr/bin/ldd $f |awk '{print $1"\n"$3"\n"}')
 done
 #Remove duplicate libs
 LLI=$( awk 'BEGIN{RS=ORS=" "}!a[$0]++' <<<$LIBS );
-#Copy to $1/lib
+
+#Make sure ld-linux is included
 LLI="${LLI[@]} `find /lib -name ld-linux-*`"
+
+#Add extra deps for dropbear
+LLI="${LLI[@]} `find /lib -name libnss_files.so*`"
+
+#Copy to $1/lib
 for lib in $LLI; do
 	if [ -e $lib ]
 	then

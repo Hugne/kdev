@@ -11,6 +11,9 @@ mount -a
 # Create all the symlinks to /bin/busybox
 busybox --install -s
 
+# Fix up permissions for /root
+chmod -R 600 /root
+
 # Create device nodes
 mknod /dev/null c 1 3
 mknod /dev/tty c 5 0
@@ -19,6 +22,8 @@ mdev -s
 # Set hostname
 hostname "kdev"
 syslogd -O /var/log/syslog
+
+dropbear -R -s -g -B
 
 # modprobe
 /etc/init.d/kmod
