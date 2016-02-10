@@ -121,4 +121,4 @@ TODO
 - dropbear include scp in build with AM\_MAKEFLAGS="PROGRAMS=dropbear .. .. scp"
 - src/Makefile.am should invoke src/dropbear/Makefile.am
 - install target script that copies binarys from host machine to rootfs, run before copylibs.sh
-
+- src/linux/configure.gnu sed expressions are broken..
