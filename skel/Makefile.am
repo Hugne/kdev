@@ -1,6 +1,10 @@
 PXEDIR		= ./pxeboot
 BOOTDIR		= $(prefix)/boot
 ETCDIR		= $(prefix)/rootfs/etc/
+ROOTFS_BOOT	= $(prefix)/rootfs/boot/
+
+$(ROOTFS_BOOT):
+	mkdir -p $(ROOTFS_BOOT)
 $(BOOTDIR):
 	mkdir -p $(BOOTDIR)
 $(BOOTDIR)/ldlinux.c32: $(BOOTDIR)
@@ -15,10 +19,10 @@ $(ETCDIR):
 	mkdir -p $(ETCDIR)
 	cp -r ./etc/* $(ETCDIR)
 
-.PHONY:etc
-etc: $(ETCDIR) 
+.PHONY: rootfs
+rootfs: $(ETCDIR) $(ROOTFS_BOOT)
 
 .PHONY: pxeboot
 pxeboot: $(BOOTDIR)/ldlinux.c32 $(BOOTDIR)/pxelinux.0 $(BOOTDIR)/pxelinux.cfg/default
 
-install-exec-hook: pxeboot etc
+install-exec-hook: pxeboot rootfs

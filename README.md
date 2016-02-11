@@ -112,8 +112,6 @@ Attach to the domain with
 TODO
 --------
 - Hostname assignment using DHCP
-- kernel should be installed in /boot in rootfs, tftp boot directory should have a vmlinuz symlink instead
-- create rootfs/boot at appropriate time
 - node define testcase should be skipped if the vm is in state running
 - check\_node\_up should use 9pm::cmd::execute "ssh... -o ConnectionAttempts=x -o ConnectTimeout=y" instead of ping
 - dropbear config at startup
@@ -122,3 +120,4 @@ TODO
 - src/Makefile.am should invoke src/dropbear/Makefile.am
 - install target script that copies binarys from host machine to rootfs, run before copylibs.sh
 - src/linux/configure.gnu sed expressions are broken..
+- doc from toplevel Makefile.am should be placed in rootfs, not in $(prefix)/share
