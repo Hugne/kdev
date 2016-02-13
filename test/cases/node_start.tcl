@@ -37,14 +37,14 @@ proc launch_domain {} {
     expect {
     -re {State:\s*running} {
         9pm::cmd::finish
-        9pm::output::skip "Domain $hostname is already defined"
-        9pm::output::skip "Domain $hostname is already running"
+        9pm::output::skip "define : Domain $hostname is already defined"
+        9pm::output::skip "start: Domain $hostname is already running"
         9pm::output::warning "Node have NOT been restarted"
         return
     }
     -re {State:\s*shut off} {
         9pm::cmd::finish
-        9pm::output::skip "Domain $hostname is already defined"
+        9pm::output::skip "define : Domain $hostname is already defined"
         start_domain $hostname
         return
     }

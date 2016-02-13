@@ -112,7 +112,6 @@ Attach to the domain with
 TODO
 --------
 - Hostname assignment using DHCP
-- node define testcase should be skipped if the vm is in state running
 - check\_node\_up should use 9pm::cmd::execute "ssh... -o ConnectionAttempts=x -o ConnectTimeout=y" instead of ping
 - dropbear config at startup
 - dropbear dependencies to libnss..

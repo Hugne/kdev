@@ -9,13 +9,13 @@ proc launch_net {} {
     expect {
         -re {Active:\s*yes} {
             9pm::cmd::finish
-            9pm::output::skip "Network default is already defined"
-            9pm::output::skip "Network default is already active"
+            9pm::output::skip "net-define : Network default is already defined"
+            9pm::output::skip "net-start : Network default is already active"
             return
         }
         -re {Active:\s*no} {
             9pm::cmd::finish
-            9pm::output::skip "Network default is already defined"
+            9pm::output::skip "define : Network default is already defined"
             start_net "default"
             return
         }
