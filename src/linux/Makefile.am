@@ -9,3 +9,4 @@ install-exec-local:
 	ln -s -r -b $(ROOTFS_BOOT)/vmlinuz $(PXEBOOT)/vmlinuz
 	echo "Install kernel modules in $(prefix)/rootfs"
 	INSTALL_MOD_PATH=$(prefix)/rootfs make -C linux modules_install
+	INSTALL_HDR_PATH=$(ROOTFS) make -C linux headers_install
