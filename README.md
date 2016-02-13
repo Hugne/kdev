@@ -112,11 +112,6 @@ Attach to the domain with
 TODO
 --------
 - Hostname assignment using DHCP
-- check\_node\_up should use 9pm::cmd::execute "ssh... -o ConnectionAttempts=x -o ConnectTimeout=y" instead of ping
-- dropbear config at startup
 - dropbear dependencies to libnss..
-- dropbear include scp in build with AM\_MAKEFLAGS="PROGRAMS=dropbear .. .. scp"
-- src/Makefile.am should invoke src/dropbear/Makefile.am
 - install target script that copies binarys from host machine to rootfs, run before copylibs.sh
-- src/linux/configure.gnu sed expressions are broken..
 - doc from toplevel Makefile.am should be placed in rootfs, not in $(prefix)/share
