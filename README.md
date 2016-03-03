@@ -109,6 +109,14 @@ Attach to the domain with
 ```
     $ virsh console node1
 ```
+
+DEVELOPMENT
+-----------
+After any code is changed in a repo that is to be installed in rootfs/built into the initramfs, 
+you need to invoke make and make install in the top level directory. This will rebuild any changed
+files and generate a new initramfs.
+
+
 TODO
 --------
 - Hostname assignment using DHCP
