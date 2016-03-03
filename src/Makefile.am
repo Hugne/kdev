@@ -1,4 +1,4 @@
-SUBDIRS = iproute2 busybox linux dropbear
+SUBDIRS = iproute2 busybox linux dropbear ethtool
 
 
 install-data-hook:
