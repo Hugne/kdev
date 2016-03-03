@@ -3,3 +3,14 @@
 ifup lo
 ifup eth0
 
+#set hostname to kdevX where X is the last octet in the node IP
+# minus one.. just because.
+set_hostname() {
+        ip=`ip ro get 0.0.0.0 oif eth0 | sed -n -e 's/^.*src //p'`
+        nid=`echo $ip |cut -d'.' -f 4`
+        nid=`expr $nid - 1`
+        hostname "kdev$nid"
+}
+
+set_hostname
+

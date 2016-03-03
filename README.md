@@ -119,7 +119,6 @@ files and generate a new initramfs.
 
 TODO
 --------
-- Hostname assignment using DHCP
 - dropbear dependencies to libnss..
 - install target script that copies binarys from host machine to rootfs, run before copylibs.sh
 - doc from toplevel Makefile.am should be placed in rootfs, not in $(prefix)/share
