@@ -1,7 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4
 SUBDIRS        = skel src
 EXTRA_DIST     = get-version autogen.sh
-dist_doc_DATA  = README.md
 
 dist-hook:
 	echo $(VERSION) > $(distdir)/.dist-version
