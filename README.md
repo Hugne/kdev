@@ -54,6 +54,7 @@ It's also possible to run tftpd as a systemd service.
 
 BOOTING
 -------
+You need the expect, tcl and tcllib packages for 9pm to work
 9pm is used to configure virsh network and start domains, check out Richard's repo
 https://github.com/rical/9pm
 There are two ways to run the 9pm scripts ether invoke the .tcl scripts directly, for this you need to define the TCLLIBPATH environment variable:
