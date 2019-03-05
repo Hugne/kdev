@@ -116,6 +116,17 @@ After any code is changed in a repo that is to be installed in rootfs/built into
 you need to invoke make and make install in the top level directory. This will rebuild any changed
 files and generate a new initramfs.
 
+There's an SMB share entry in the kdev nodes fstab.
+To make this work, install samba on the host system and add a share entry
+to the end of /etc/samba/smb.conf and restrict access to the kdev network.
+Then restart samba with `systemctl restart smbd`
+```
+[share]
+path = /home/dude/kdev/
+guest ok = yes
+read only = yes
+hosts allow = 192.168.100.0/255.255.255.0
+```
 
 TODO
 --------

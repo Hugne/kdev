@@ -3,3 +3,5 @@ sysfs		/sys				sysfs	defaults	0	0
 debugfs		/sys/kernel/debug	debugfs	defaults	0	0
 tmpfs		/tmp			tmpfs	size=50M	0	0
 devpts		/dev/pts		devpts defaults		0	0
+
+//192.168.100.1/share	/mnt	cifs username=guest,vers=1.0	0	0

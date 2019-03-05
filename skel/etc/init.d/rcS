@@ -27,3 +27,6 @@ dropbear -R -s -g -B
 /etc/init.d/kmod
 # networking
 /etc/init.d/network
+
+# hack - mount all again after network to make the cifs entry bite
+mount -a
