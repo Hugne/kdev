@@ -8,7 +8,7 @@
 	ignore = dirty
 [submodule "linux"]
 	path = src/linux/linux
-	url = git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+	url = git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
 	ignore = dirty
 [submodule "9pm"]
 	path = test/9pm
