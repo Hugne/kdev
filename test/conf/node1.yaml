@@ -1,10 +1,23 @@
 machine:
-        HOSTNAME: "node1"
-        SSH_IP: "192.168.100.2"
-        SSH_USER: "root"
-        MAC: "52:54:00:c8:26:02"
+        HOSTNAME:  "node1"
+        SSH_IP:  "192.168.100.2"
+        SSH_USER:  "root"
+        MAC:  "52:54:00:c8:26:02"
         # This needs to be fairly accurate. I.e. a prompt of simply "$" or
         # "foobar" could easily match something that is not a real prompt.
         # Try to make the matching as precise as possible.
         # #[root@kdev ~]# exit
-        PROMPT: "[root@kdev *#"
+        PROMPT:  "[root@kdev *#"
+
+        #List of namespace names and their TIPC id
+        NETNS: >
+                  titan 1.1.1 europa 1.1.2 oberon 1.1.3 io 1.1.4
+                  enceladus 1.1.5 moon 1.1.6 triton 1.1.7 mimas 1.1.8
+                  phobos 1.1.9 ganymede 1.1.10 charon 1.1.11
+                  hyperion 1.1.12 tethys 1.1.13 dione 1.1.14
+                  phobos 1.1.15 nereid 1.1.16 umbriel 1.1.17
+                  iapetus 1.1.18 proteus 1.1.19 amalthea 1.1.20
+                  dysnomia 1.1.21 titania 1.1.22 deimos 1.1.23
+                  callisto 1.1.24 carme 1.1.25 kerberos 1.1.26
+                  styx 1.1.27 himalia 1.1.28 ananke 1.1.29
+                  sinope 1.1.30 eurydome 1.1.31 aitne 1.1.32
