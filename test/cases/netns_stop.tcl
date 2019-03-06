@@ -14,6 +14,10 @@ proc destroy_ns { name } {
 }
 
 proc destroy_bridge { name } {
+    9pm::cmd::execute "ip link set $name down"
+    if {${?} != 0} {
+         9pm::fatal 9pm::output::error "Failed to bring down $name"
+    }
     9pm::cmd::execute "brctl delbr $name"
     if {${?} != 0} {
         9pm::fatal 9pm::output::error "Failed to delete container bridge $name"
@@ -24,11 +28,12 @@ proc destroy_bridge { name } {
 
 set timeout 120
 
-set namespaces {"red" "green" "blue" "yellow"}
-9pm::output::plan [expr [llength $namespaces]+1]
+set namespaces [9pm::conf::get machine NETNS]
+
+9pm::output::plan [expr [dict size $namespaces]+1]
 set timeout 120
 
-foreach ns $namespaces {
+dict for {ns tipc_id} $namespaces {
     destroy_ns $ns
 }
 destroy_bridge "rainbow"
