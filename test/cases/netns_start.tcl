@@ -10,6 +10,10 @@ proc create_bridge { name } {
     if {${?} != 0} {
         9pm::fatal 9pm::output::error "Failed to create container bridge $name"
     }
+    9pm::cmd::execute "ip link set $name up"
+    if {${?} != 0} {
+        9pm::fatal 9pm::output::error "Failed to bring bridge $name up"
+    }
     9pm::output::ok "Created container bridge $name"
 
 }
