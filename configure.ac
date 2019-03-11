@@ -6,7 +6,7 @@ AC_INIT([kdev],
         [erik.hugne@gmail.com])
 AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADER([config.h])
-AC_CONFIG_FILES([Makefile skel/Makefile src/Makefile src/dropbear/Makefile src/iproute2/Makefile src/busybox/Makefile src/linux/Makefile src/ethtool/Makefile])
+AC_CONFIG_FILES([Makefile skel/Makefile src/Makefile src/dropbear/Makefile src/iproute2/Makefile src/busybox/Makefile src/linux/Makefile src/ethtool/Makefile src/bash/Makefile])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror tar-ustar])
 AM_MAINTAINER_MODE
@@ -36,7 +36,7 @@ AC_PROG_EGREP
 AC_PREFIX_DEFAULT(/tmp)
 ####
 #3pp modules, not automake
-AC_CONFIG_SUBDIRS([src/linux src/dropbear src/busybox src/iproute2/iproute2 src/ethtool])
+AC_CONFIG_SUBDIRS([src/linux src/dropbear src/busybox src/iproute2/iproute2 src/ethtool src/bash/bash])
 
 ####
 

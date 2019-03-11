@@ -22,3 +22,7 @@
 	path = src/ethtool/ethtool
 	url = git://git.kernel.org/pub/scm/network/ethtool/ethtool.git
 	ignore = dirty
+[submodule "src/bash/bash"]
+	path = src/bash/bash
+	url = git://git.savannah.gnu.org/bash.git
+	ignore = dirty
