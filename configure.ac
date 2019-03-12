@@ -15,6 +15,7 @@ m4_pattern_allow([AM_PROG_AR])
 m4_include([m4/ax_prog_perl_modules.m4])
 m4_include([m4/ax_prog_tcl.m4])
 m4_include([m4/ax_prog_tcl_modules.m4])
+m4_include([m4/ax_subdirs_configure.m4])
 AM_PROG_AR
 
 # Configure libtool
@@ -36,8 +37,8 @@ AC_PROG_EGREP
 AC_PREFIX_DEFAULT(/tmp)
 ####
 #3pp modules, not automake
-AC_CONFIG_SUBDIRS([src/linux src/dropbear src/busybox src/iproute2/iproute2 src/ethtool src/bash/bash])
-
+AC_CONFIG_SUBDIRS([src/linux src/dropbear src/busybox src/iproute2/iproute2 src/ethtool])
+AX_SUBDIRS_CONFIGURE([src/bash/bash], [--enable-net-redirections])
 ####
 
 # Check some compiler flags
