@@ -38,7 +38,7 @@ AC_PREFIX_DEFAULT(/tmp)
 ####
 #3pp modules, not automake
 AC_CONFIG_SUBDIRS([src/linux src/dropbear src/busybox src/iproute2/iproute2 src/ethtool])
-AX_SUBDIRS_CONFIGURE([src/bash/bash], [--enable-net-redirections])
+AX_SUBDIRS_CONFIGURE([src/bash/bash], [--enable-net-redirections], [--prefix=$prefix/rootfs])
 ####
 
 # Check some compiler flags
